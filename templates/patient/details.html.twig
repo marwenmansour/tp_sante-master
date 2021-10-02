@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ patient.getDisplayedName()}} | {{parent() }} {% endblock %}
+{% block body %}
+<h1>{{ patient.getDisplayedName() }}</h1>
+
+<dl>
+    <dt>Date de naissance</dt>
+    <dd>{{ patient.dateDeNaissance.format('d/m/Y')}}</dd>
+    <dt>Adresse</dt>
+    <dd>{{ patient.adresse}}</dd>
+    <dt>Nombre des enfants</dt>
+    <dd>{{ patient.nombreEnfant}}</dd>  
+    <dt>Nombre des rendez_vous</dt>
+    <dd>{{ patient.dossier.nombreRdv}}</dd>
+</dl>
+
+{% endblock %}

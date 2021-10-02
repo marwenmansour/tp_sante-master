@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}recherche | {{parent()}}{% endblock %}
+
+{% block body %}
+<h1>Recherche par identifiant</h1>
+
+    <form method= "POST">
+        <div class="form-group">
+        <input type="number"
+            class="form-control" name="R_ID" id="R_ID" aria-describedby="helpId" placeholder="">
+        </div>
+        <button type="submit" class="btn btn-primary">Rechercher</button>
+    </form>
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            {% block thead %}
+            <th>ID </th>
+            <th>Nom </th>
+            <th>Prenom </th>
+            <th>Adresse </th>
+            <th>Date de naissance </th>
+            <th>Nb enfants </th>
+            <th>Nb rendez-vous</th>
+            <th> action   </th>
+            {% endblock %}
+        </tr>
+        <tbody>
+            {%for patient in patients %}
+                <tr>
+                    {% block tbody %}
+                    <td>{{patient.id}}</td>
+                    <td>{{patient.nom}}</td>
+                    <td>{{patient.prenom}}</td>
+                    <td>{{patient.adresse}}</td>
+                    <td>{{patient.dateDeNaissance.format('d/m/Y')}}</td>  
+                    <td>{{patient.nombreEnfant}}</td>
+                    <td>{{patient.dossier.nombreRdv}}</td>
+                    <td>
+                    <a class="btn btn-primary mr-2" href="{{ path('patient', {id: patient.id}) }}" title="Détails">Détails</a>
+                    </td>
+           
+        
+                    {% endblock %} 
+            {% endfor%}
+                    
+                </tr>
+          
+        </tbody>
+    </table>    
+
+{% endblock %}
+
